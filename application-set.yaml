@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: application-set-git-generator
+spec:
+  generators: 
+  - git:
+      repoURL: https://github.com/DaiYamask/argocd-multiple-env.git
+      revision: HEAD
+      directories:
+       - path: mafenist/*
+  template:
+    metadata:
+      name: '{{path.name}}'
+      namespace: dev-dy
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/DaiYamask/argocd-multiple-env.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
