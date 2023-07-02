@@ -8,10 +8,10 @@ spec:
       repoURL: https://github.com/DaiYamask/argocd-multiple-env.git
       revision: HEAD
       directories:
-       - path: mafenist/*
+       - path: manifest/*
   template:
     metadata:
-      name: '{{path.name}}'
+      name: '{{path.basename}}'
       namespace: dev-dy
     spec:
       project: default
